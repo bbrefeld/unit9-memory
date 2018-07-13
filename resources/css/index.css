@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
+
+html {
+  font-size: 14px;
+  font-family: "Work Sans", sans-serif;
+  background-color: rgb(255,242,242);
+}
+
+body {
+  width: 100%;
+  background-color: rgb(255,242,242);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(32, 64, 86);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+p {
+  color: rgb(74 ,74, 74);
+}
+
+main {
+  margin: 5.25rem 2rem 2rem 2rem;
+}
+
+.col-xs-3 {
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(32, 64, 86);
+  height: 16vw;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: rgb(32, 64, 86);
+}
+
+.card span {
+  display: block;
+  font-size: 11vw;
+  font-weight: 900;
+}
+
+.active#card1 {
+  background-color: red;
+  color: white;
+}
+.active#card2 {
+  background-color: orange;
+  color: white;
+}
+.active#card3 {
+  background-color: yellow;
+  color: white;
+}
+.active#card4 {
+  background-color: green;
+  color: white;
+}
+.active#card5 {
+  background-color: blue;
+  color: white;
+}
+.active#card6 {
+  background-color: purple;
+  color: white;
+}
+.active#card7 {
+  background-color: pink;
+  color: white;
+}
+.active#card8 {
+  background-color: cyan;
+  color: white;
+}
+#match {
+  background-color: grey;
+  color: black;
+}
+.found {
+  background-color: darkgrey;
+  color: grey;
+}
