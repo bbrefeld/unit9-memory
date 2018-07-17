@@ -66,9 +66,11 @@ var cardGame = {
         card1.addEventListener("click", cardGame.color);
         card1.removeAttribute("class");
         card1.setAttribute("class", "card");
+        card1.childNodes[0].style.visibility = "hidden";
         card2.addEventListener("click", cardGame.color);
         card2.removeAttribute("class");
         card2.setAttribute("class", "card");
+        card2.childNodes[0].style.visibility = "hidden";
       };
       cardGame.gameComplete();
     };
@@ -80,6 +82,7 @@ var cardGame = {
       var i = this.childNodes[0].innerHTML;
       this.id = "card" + i;
       this.className = "card active";
+      this.childNodes[0].style.visibility = "visible";
       this.removeEventListener("click", cardGame.color);
       if (cards.length === 2) {
         setTimeout(cardGame.checkMatching, 2000);
