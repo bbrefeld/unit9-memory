@@ -85,7 +85,7 @@ var cardGame = {
       this.childNodes[0].style.visibility = "visible";
       this.removeEventListener("click", cardGame.color);
       if (cards.length === 2) {
-        setTimeout(cardGame.checkMatching, 2000);
+        setTimeout(cardGame.checkMatching, 1000);
       };
     };
   },
