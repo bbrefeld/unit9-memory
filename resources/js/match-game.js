@@ -1,26 +1,11 @@
 
 // Reset button
 function reset() {
-  var i = 0;
-  var x = 0;
-  let cards = game.getElementsByClassName("card");
-  let cardContainers = game.getElementsByClassName("col-xs-3");
-  var cardArray = [];
-  var mainContainer = document.getElementsByClassName("col-md-9");
-  while (x < 16) {
-    cardArray.push(cards[x]);
-    x++;
+  var myNode = document.getElementById("game");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
   };
-  while (i < 16) {
-    cardArray[i].removeEventListener("click", color);
-    while (cardArray[i].firstChild) {
-      cardArray[i].removeChild(cardArray[i].firstChild);
-    };
-    if (cardArray.length != 0) {
-      cardArray[i].parentNode.removeChild(mainContainer.childNodes[cardArray.length]);
-    };
-    i++;
-  };
+  cardGame.renderCards(cardGame.generateCardValues());
 };
 
 var cardGame = {
@@ -70,58 +55,50 @@ var cardGame = {
     let cards = document.getElementsByClassName("card active");
     if (cards.length === 2) {
       if (cards[0].childNodes[0].innerHTML === cards[1].childNodes[0].innerHTML) {
-        var card10 = this.cards[0];
-        var card20 = this.cards[1];
+        var card10 = cards[0];
+        var card20 = cards[1];
         card10.className = "card found";
         card20.className = "card found";
       }
       else {
-        var card1 = this.cards[0];
-        var card2 = this.cards[1];
-        card1.addEventListener("click", color);
+        var card1 = cards[0];
+        var card2 = cards[1];
+        card1.addEventListener("click", cardGame.color);
         card1.removeAttribute("class");
         card1.setAttribute("class", "card");
-        card2.addEventListener("click", color);
+        card2.addEventListener("click", cardGame.color);
         card2.removeAttribute("class");
         card2.setAttribute("class", "card");
       };
-      this.gameComplete();
+      cardGame.gameComplete();
     };
   },
 
   color             : function() {
-    var i = this.childNodes[0].innerHTML;
-    this.id = "card" + i;
-    this.className = "card active";
-    this.removeEventListener("click", cardGame.color);
-    cardGame.checkMatching();
+    let cards = document.getElementsByClassName("card active");
+    if (cards.length < 2) {
+      var i = this.childNodes[0].innerHTML;
+      this.id = "card" + i;
+      this.className = "card active";
+      this.removeEventListener("click", cardGame.color);
+      if (cards.length === 2) {
+        setTimeout(cardGame.checkMatching, 2000);
+      };
+    };
   },
 
   gameComplete      : function() {
     let cards = game.getElementsByClassName("card found");
-    if (this.cards.length === 16) {
+    console.log(cards.length);
+    if (cards.length === 16) {
       var congratulate = document.createElement("h3");
       var congratulateText = document.createTextNode("Congratulations, you found all possible combinations!");
       congratulate.appendChild(congratulateText);
       var test = document.getElementsByClassName("col-md-3");
+      test[0].appendChild(congratulate);
     };
   }
 };
-
-/* // flow of functions
-document.addEventListener("DOMContentLoaded", function() {
-  cardGame.renderCards(cardGame.generateCardValues());
-  if (cardGame.renderCards === "x") {
-    cardGame.cardListener();
-    if (cardGame.cardListener === "x") {
-      if (cardGame.cards.length === 2) {
-        cardGame.checkMatching();
-      } else if (cardGame.cards.length === 16) {
-        cardGame.gameComplete();
-      };
-    };
-  };
-}); */
 
 // flow of functions
 document.addEventListener("DOMContentLoaded", function() {
